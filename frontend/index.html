@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="adminPanelApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+
+    <div ng-controller="DataController as ctrl" class="container">
+        <div class="user-list">
+            <h2>User List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone No.</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in ctrl.users">
+                        <td>{{ user.userId }}</td>
+                        <td>{{ user.userName }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phoneNumber }}</td>
+                        <td>{{ user.userCountry }}</td>
+                        <td>{{ user.userCity }}</td>
+                        <td>{{ user.password }}</td>
+                        
+                        <td>
+                            <button ng-click="ctrl.editUser(user)">Edit</button>
+                            <button ng-click="ctrl.deleteUser(user.userId)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="user-form">
+            <h2>{{ ctrl.formTitle }}</h2>
+            <form ng-submit="ctrl.submitUser()">
+                <label for="username">Username:</label>
+                <input type="text" id="username" ng-model="ctrl.user.userName" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" ng-model="ctrl.user.email" required><br><br>
+                <label for="Phone No.">Phone No:</label>
+                <input type="tel" id="phoneNumber" ng-model="ctrl.user.phoneNumber" required><br><br>
+                <label for="Country">Country:</label>
+                <input type="text" id="country" ng-model="ctrl.user.userCountry" required><br><br>
+                <label for="City">City:</label>
+                <input type="text" id="city" ng-model="ctrl.user.userCity" required><br><br>
+                <label for="Password">Password:</label>
+                <input type="password" id="password" ng-model="ctrl.user.password" required><br><br>
+                <!-- Add other fields as needed -->
+
+                <button type="submit">{{ ctrl.submitBtnText }}</button>
+            </form>
+        </div>
+    </div>
+
+    
+
+    
+    <!-- Your AngularJS scripts -->
+    <script src="UserController.js"></script>
+    <footer>
+        <p>&copy; 2024 Admin Panel. All rights reserved.</p>
+    </footer>
+</body>
+</html>
